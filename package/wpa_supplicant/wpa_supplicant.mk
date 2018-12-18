@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-WPA_SUPPLICANT_VERSION = 2.6
-WPA_SUPPLICANT_SITE = http://hostap.epitest.fi/releases
+WPA_SUPPLICANT_VERSION = 2.7
+WPA_SUPPLICANT_SITE = http://w1.fi/releases
 WPA_SUPPLICANT_LICENSE = BSD-3-Clause
 WPA_SUPPLICANT_LICENSE_FILES = README
 WPA_SUPPLICANT_CONFIG = $(WPA_SUPPLICANT_DIR)/wpa_supplicant/.config
@@ -89,8 +89,8 @@ WPA_SUPPLICANT_CONFIG_ENABLE += CONFIG_WPS
 endif
 
 # Try to use openssl if it's already available
-ifeq ($(BR2_PACKAGE_OPENSSL),y)
-WPA_SUPPLICANT_DEPENDENCIES += openssl
+ifeq ($(BR2_PACKAGE_LIBOPENSSL),y)
+WPA_SUPPLICANT_DEPENDENCIES += libopenssl
 WPA_SUPPLICANT_LIBS += $(if $(BR2_STATIC_LIBS),-lcrypto -lz)
 WPA_SUPPLICANT_CONFIG_EDITS += 's/\#\(CONFIG_TLS=openssl\)/\1/'
 else
